@@ -12,6 +12,7 @@
       "args": [],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "make",
+      "postDebugTask": "install"
     }
   ]
 }

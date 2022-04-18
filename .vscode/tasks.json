@@ -5,6 +5,11 @@
       "label": "make",
       "type": "shell",
       "command": "make"
-    }
+    },
+    {
+      "label": "install",
+      "type": "shell",
+      "command": "sudo cp -rf ./dwm /usr/local/bin/"
+    },
   ]
 }
