@@ -1,3 +1,4 @@
+#include "layouts.h"
 #include "cmds.h"
 
 /* See LICENSE file for copyright and license details. */
@@ -41,9 +42,15 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "\uF009",          tile },    /* ◫ first entry is default */ /* \x25EB */
+	{ "𝌇",              tile2 },    /* ◫ first entry is default */ /* \x25EB */
+	{ "\uF24D",   	     NULL },    /*  no layout function means floating behavior */ /* \xF24D */
+	{ "\uF2D0",          monocle },    /* ▇ */
+	{ "\uF00A",          grid },    /* ▇ */
+	{ "\u259A",          dwindle },    /* ▇ */
+	{ "\u259E",          spiral },    /* ▇ */
+	{ "\uF0C9",          bstack },    /* ▇ */
+	{ "\uF0CA",          bstackhoriz },    /*  */
 };
 
 /* key definitions */
@@ -78,8 +85,14 @@ static Key keys[] = {
 
 	/* layouts */
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY|SHIFT,                 XK_t,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|SHIFT,                 XK_g,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY|SHIFT,                 XK_d,      setlayout,      {.v = &layouts[5]} },
+	{ MODKEY|SHIFT,                 XK_s,      setlayout,      {.v = &layouts[6]} },
+	{ MODKEY|SHIFT,                 XK_c,      setlayout,      {.v = &layouts[7]} },
+	{ MODKEY|SHIFT,                 XK_h,      setlayout,      {.v = &layouts[8]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 
 	/* dwm shortcuts */

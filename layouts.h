@@ -1,0 +1,5 @@
+#include "layouts/grid.c"
+#include "layouts/tile2.c"
+#include "layouts/fibonacci.c"
+#include "layouts/bstack.c"
+#include "layouts/bstackhoriz.c"
