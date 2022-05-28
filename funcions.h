@@ -1,1 +1,2 @@
-#include "funcions/shiftview.c" // Перемещение по тегам вперед/назад
+#include "funcions/shiftview.c"
+#include "funcions/movestack.c"
