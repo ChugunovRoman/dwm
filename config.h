@@ -39,6 +39,8 @@ static const Rule rules[] = {
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
+#include "funcions.h"
+
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
@@ -104,6 +106,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_space,  togglebar,      {0} },
 	{ MODKEY,                       XK_s,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_w,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_Left,   shiftview,      {.i = -1 } },
+	{ MODKEY,                       XK_Right,  shiftview,      {.i = +1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_o,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_a,      setmfact,       {.f = -0.05} },

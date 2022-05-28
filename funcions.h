@@ -1,0 +1,1 @@
+#include "funcions/shiftview.c" // Перемещение по тегам вперед/назад
