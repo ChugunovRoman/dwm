@@ -18,6 +18,7 @@ static const char *fonts[]          = {
 	"Terminus:size=10",
 	"Font Awesome 6 Pro:size=10",
 	"Font Awesome 6 Brands:size=10",
+	"Layout Font:size=10",
 };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
@@ -54,15 +55,15 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "\uF009",          tile },    /* ◫ first entry is default */ /* \x25EB */
-	{ "𝌇",              tile2 },    /* ◫ first entry is default */ /* \x25EB */
-	{ "\uF24D",   	     NULL },    /*  no layout function means floating behavior */ /* \xF24D */
-	{ "\uF2D0",          monocle },    /* ▇ */
-	{ "\uF00A",          grid },    /* ▇ */
-	{ "\u259A",          dwindle },    /* ▇ */
-	{ "\u259E",          spiral },    /* ▇ */
-	{ "\uF0C9",          bstack },    /* ▇ */
-	{ "\uF0CA",          bstackhoriz },    /*  */
+	{ "␧",          tile },
+	{ "␨",          tile2 },
+	{ "␩",   	      NULL },
+	{ "␪",          monocle },
+	{ "␫",          grid },
+	{ "␬",          dwindle },
+	{ "␭",          spiral },
+	{ "␮",          bstack },
+	{ "␯",          bstackhoriz },
 };
 
 /* key definitions */
