@@ -16,9 +16,9 @@ static const int topbar             = 1;     /* 0 means bottom bar */
 static const char *fonts[]          = {
 	"monospace:size=10",
 	"Terminus:size=10",
-	"Font Awesome 6 Pro:size=10",
-	"Font Awesome 6 Brands:size=10",
-	"Layout Font:size=10",
+	"Font Awesome 6 Pro:size=12",
+	"Font Awesome 6 Brands:size=12",
+	"Layout Font:size=14",
 };
 static const char dmenufont[]       = "monospace:size=10";
 static const char col_gray1[]       = "#222222";
