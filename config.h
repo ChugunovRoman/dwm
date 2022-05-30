@@ -14,6 +14,7 @@ static const int showsystray                      = 1;     /* 0 means no systray
 static const int showbar                          = 1;     /* 0 means no bar */
 static const int topbar                           = 1;     /* 0 means bottom bar */
 static const unsigned int mousewrap		            = 1; // 1 - enable mouse warp, 0 - disable mouse warp
+static const unsigned int keyboardlayout		      = 1; // 1 - enable Per-window keyboard layout, 0 - disable Per-window keyboard layout
 static const char *fonts[]                        = {
 	"monospace:size=10",
 	"Terminus:size=10",
