@@ -34,16 +34,6 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_gray5,  col_cyan  },
 };
 
-static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
-	/* class      instance    title       tags mask     border width    isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            borderpx,       1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       borderpx,       0,           -1 },
-};
-
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
@@ -76,6 +66,7 @@ static Tag tags[] = {
 	{ "", &layouts[0] }
 };
 
+#include "rules.h"
 #include "funcions.h"
 
 /* key definitions */
