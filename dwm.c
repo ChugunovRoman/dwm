@@ -157,6 +157,12 @@ typedef struct {
 	int monitor;
 } Rule;
 
+typedef struct
+{
+	const char *symbol;
+	const Layout *layout;
+} Tag;
+
 typedef struct Systray   Systray;
 struct Systray {
 	Window win;
@@ -472,7 +478,7 @@ buttonpress(XEvent *e)
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
 		do
-			x += TEXTW(tags[i]);
+			x += TEXTW(tags[i].symbol);
 		while (ev->x >= x && ++i < LENGTH(tags));
 		if (i < LENGTH(tags)) {
 			click = ClkTagBar;
@@ -735,9 +741,9 @@ createmon(void)
 	m->nmaster = nmaster;
 	m->showbar = showbar;
 	m->topbar = topbar;
-	m->lt[0] = &layouts[0];
+	m->lt[0] = tags[0].layout;
 	m->lt[1] = &layouts[1 % LENGTH(layouts)];
-	strncpy(m->ltsymbol, layouts[0].symbol, sizeof m->ltsymbol);
+	strncpy(m->ltsymbol, tags[0].layout->symbol, sizeof m->ltsymbol);
 	return m;
 }
 
@@ -824,9 +830,9 @@ drawbar(Monitor *m)
 	}
 	x = 0;
 	for (i = 0; i < LENGTH(tags); i++) {
-		w = TEXTW(tags[i]);
+		w = TEXTW(tags[i].symbol);
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
-		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i].symbol, urg & 1 << i);
 		if (occ & 1 << i)
 			drw_rect(drw, x + boxs, boxs, boxw, boxw,
 				m == selmon && selmon->sel && selmon->sel->tags & 1 << i,
@@ -1727,6 +1733,12 @@ setlayout(const Arg *arg)
 	if (arg && arg->v)
 		selmon->lt[selmon->sellt] = (Layout *)arg->v;
 	strncpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof selmon->ltsymbol);
+
+	// Also set the layout for a current tag 
+	for (int i = 0; i < LENGTH(tags); i++)
+		if (((1 << i) & TAGMASK) == selmon->tagset[selmon->seltags])
+			tags[i].layout = (Layout *)arg->v;
+
 	if (selmon->sel)
 		arrange(selmon);
 	else
@@ -2440,6 +2452,13 @@ view(const Arg *arg)
 	selmon->seltags ^= 1; /* toggle sel tagset */
 	if (arg->ui & TAGMASK)
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
+
+	for (int i = 0; i < LENGTH(tags); i++)
+		if (((1 << i) & TAGMASK) == selmon->tagset[selmon->seltags]) {
+			selmon->lt[selmon->sellt] = tags[i].layout;
+			strncpy(selmon->ltsymbol, selmon->lt[selmon->sellt]->symbol, sizeof selmon->ltsymbol);
+		}
+
 	focus(NULL);
 	arrange(selmon);
 }

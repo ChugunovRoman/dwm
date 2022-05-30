@@ -33,9 +33,6 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
-/* tagging */
-static const char *tags[] = { "", "", "", "", "", "", "", "", "" };
-
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
@@ -45,8 +42,6 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            borderpx,       1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       borderpx,       0,           -1 },
 };
-
-#include "funcions.h"
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
@@ -66,6 +61,21 @@ static const Layout layouts[] = {
 	{ "␮",          bstack },
 	{ "␯",          bstackhoriz },
 };
+
+/* tagging */
+static Tag tags[] = {
+	{ "", &layouts[7] },
+	{ "", &layouts[3] },
+	{ "", &layouts[0] },
+	{ "", &layouts[3] },
+	{ "", &layouts[1] },
+	{ "", &layouts[3] },
+	{ "", &layouts[3] },
+	{ "", &layouts[0] },
+	{ "", &layouts[0] }
+};
+
+#include "funcions.h"
 
 /* key definitions */
 #define ALT Mod1Mask
@@ -107,7 +117,7 @@ static Key keys[] = {
 	{ MODKEY|SHIFT,                 XK_s,      setlayout,      {.v = &layouts[6]} },
 	{ MODKEY|SHIFT,                 XK_c,      setlayout,      {.v = &layouts[7]} },
 	{ MODKEY|SHIFT,                 XK_h,      setlayout,      {.v = &layouts[8]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
+	{ MODKEY,                       XK_b,      setlayout,      {0} },
 
 	/* dwm shortcuts */
 	{ MODKEY,                       XK_space,  togglebar,      {0} },
