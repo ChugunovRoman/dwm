@@ -23,8 +23,6 @@ static const Rule rules[] = {
 	{ "Pcmanfm",        									              NULL,       NULL,       				         1 << 3,       borderpx,             0,           0 },
 	{ "Nautilus",       									              NULL,       NULL,       				         1 << 3,       borderpx,             0,           0 },
 	{ "Nemo",           									              NULL,       NULL,       				         1 << 3,       borderpx,             0,           0 },
-	{ "Postman",           								              NULL,       NULL,       				         1 << 3,       borderpx,             0,           0 },
-	{ "Insomnia",           							              NULL,       NULL,       				         1 << 3,       borderpx,             0,           0 },
 	{ "Skype",           									              NULL,       NULL,       				         1 << 3,       borderpx,             0,           0 },
 	{ "Electron",   										                NULL,       NULL,       				         1 << 3,       borderpx,             0,           0 },
 	{ "zoom",   											                  NULL,       NULL,       				         1 << 3,       borderpx,             0,           0 },
@@ -34,12 +32,15 @@ static const Rule rules[] = {
 
 	{ "Audacious",      									              NULL,       NULL,       				         1 << 4,       borderpx,             0,           0 },
 	{ "TelegramDesktop",									              NULL,       NULL,       				         1 << 4,       borderpx,             0,           0 },
+	{ "Pavucontrol",											              NULL,       NULL,       				         1 << 4,       borderpx,             0,           0 },
 
 	{ "Gimp",           									              NULL,       NULL,       				         1 << 5,       borderpx,             0,           -1 },
 	{ "Photoshop.exe",  									              NULL,       NULL,       				         1 << 5,       borderpx,             0,           -1 },
 	{ "Inkscape",       									              NULL,       NULL,       				         1 << 5,       borderpx,             0,           -1 },
   { "Sqlectron",           							              NULL,       NULL,       				         1 << 5,       borderpx,             0,           0 },
 	{ "NoSQLBooster for MongoDB",   			              NULL,       NULL,       				         1 << 5,       borderpx,             0,           0 },
+	{ "Postman",           								              NULL,       NULL,       				         1 << 5,       borderpx,             0,           0 },
+	{ "Insomnia",           							              NULL,       NULL,       				         1 << 5,       borderpx,             0,           0 },
 
 	{ "Mainwindow.py",  									              NULL,       NULL,       				         1 << 6,       borderpx,             0,           -1 },
 	{ "Steam",  											                  NULL,       NULL,       				         1 << 6,       borderpx,             0,           -1 },
