@@ -67,6 +67,14 @@ static Tag tags[] = {
 	{ "", &layouts[0] }
 };
 
+static const ScriptButton script_buttons[] = {
+	{ "␿", 	NULL },
+	{ "",	wallpaper },
+	{ "␿", 	NULL },
+	{ "",	shutdowncmd },
+	{ "",	rebootcmd },
+};
+
 #include "rules.h"
 #include "funcions.h"
 

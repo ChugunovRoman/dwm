@@ -128,6 +128,12 @@ typedef struct {
 	void (*arrange)(Monitor *);
 } Layout;
 
+typedef struct
+{
+	const char *symbol;
+	const char *command;
+} ScriptButton;
+
 struct Monitor {
 	char ltsymbol[16];
 	float mfact;
@@ -284,6 +290,7 @@ static char stext[256];
 static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh, blw = 0;      /* bar geometry */
+static int sbw = 0;					 /* script buttons bar width */
 static int lrpad;            /* sum of left and right padding for text */
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
@@ -490,6 +497,17 @@ buttonpress(XEvent *e)
 			click = ClkLtSymbol;
 		else if (ev->x > selmon->ww - (int)TEXTW(stext) - getsystraywidth())
 			click = ClkStatusText;
+		else if (ev->x > x + blw && ev->x < x + blw + sbw) {
+			unsigned short i1 = 0;
+			unsigned short x1 = x + blw;
+			do
+				x1 += TEXTW(script_buttons[i1].symbol);
+			while (ev->x >= x1 && ++i1 < LENGTH(script_buttons));
+
+			if (i1 < LENGTH(script_buttons) && ev->button == Button1) {
+				spawn(&(Arg){.v = script_buttons[i1].command});
+			}
+		}
 		else
 			click = ClkWinTitle;
 	} else if ((c = wintoclient(ev->window))) {
@@ -845,6 +863,12 @@ drawbar(Monitor *m)
 	w = blw = TEXTW(m->ltsymbol);
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+
+	for (i = 0; i < LENGTH(script_buttons); i++) {
+		w = TEXTW(script_buttons[i].symbol);
+		drw_text(drw, x, 0, w, bh, lrpad / 2, script_buttons[i].symbol, 0);
+		x += w;
+	}
 
 	if ((w = m->ww - tw - stw - x) > bh) {
 		if (m->sel) {
@@ -1874,6 +1898,9 @@ setup(void)
 	XSelectInput(dpy, root, wa.event_mask);
 	grabkeys();
 	focus(NULL);
+	for (int i = 0; i < LENGTH(script_buttons); i++) {
+		sbw += TEXTW(script_buttons[i].symbol);
+	}
 }
 
 
