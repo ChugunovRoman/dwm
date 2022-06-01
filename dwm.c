@@ -169,6 +169,7 @@ typedef struct
 {
 	const char *symbol;
 	const Layout *layout;
+	float mfact;
 } Tag;
 
 typedef struct Systray   Systray;
@@ -1786,13 +1787,22 @@ void
 setmfact(const Arg *arg)
 {
 	float f;
+	float tagmfact;
+	unsigned int i;
 
+	for (i = 0; i < LENGTH(tags); i++)
+		if (((1 << i) & TAGMASK) == selmon->tagset[selmon->seltags]) {
+			tagmfact = tags[i].mfact;
+			break;
+		}
+	if (!tagmfact)
+		tagmfact = selmon->mfact;
 	if (!arg || !selmon->lt[selmon->sellt]->arrange)
 		return;
-	f = arg->f < 1.0 ? arg->f + selmon->mfact : arg->f - 1.0;
+	f = arg->f < 1.0 ? arg->f + tagmfact : arg->f - 1.0;
 	if (f < 0.05 || f > 0.95)
 		return;
-	selmon->mfact = f;
+	tags[i].mfact = f;
 	arrange(selmon);
 }
 
@@ -1982,6 +1992,7 @@ tagmon(const Arg *arg)
 void
 tile(Monitor *m)
 {
+	float tagmfact;
 	unsigned int i, n, h, mw, my, ty;
 	Client *c;
 
@@ -1989,9 +2000,16 @@ tile(Monitor *m)
 	if (n == 0)
 		return;
 
-	if (n > m->nmaster)
-		mw = m->nmaster ? m->ww * m->mfact : 0;
-	else
+	if (n > m->nmaster) {
+		for (int j = 0; j < LENGTH(tags); j++)
+			if (((1 << j) & TAGMASK) == m->tagset[m->seltags]) {
+				tagmfact = tags[j].mfact;
+				break;
+			}
+		if (!tagmfact)
+			tagmfact = m->mfact;
+		mw = m->nmaster ? m->ww * tagmfact : 0;
+	} else
 		mw = m->ww;
 	for (i = my = ty = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 		if (i < m->nmaster) {

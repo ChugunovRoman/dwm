@@ -2,6 +2,7 @@ static void
 bstack(Monitor *m) {
 	int x, y, h, w, mh;
 	unsigned int i, n;
+	float tagmfact;
 	Client *c;
 
 	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++);
@@ -9,7 +10,14 @@ bstack(Monitor *m) {
 		return;
 	/* master */
 	c = nexttiled(m->clients);
-	mh = m->mfact * m->wh;
+	for (int j = 0; j < LENGTH(tags); j++)
+		if (((1 << j) & TAGMASK) == m->tagset[m->seltags]) {
+			tagmfact = tags[j].mfact;
+			break;
+		}
+	if (!tagmfact)
+		tagmfact = m->mfact;
+	mh = tagmfact * m->wh;
 	resize(c, m->wx, m->wy, m->ww - 2 * c->bw, (n == 1 ? m->wh : mh) - 2 * c->bw, False);
 	if(--n == 0)
 		return;

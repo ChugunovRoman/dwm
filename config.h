@@ -56,15 +56,15 @@ static const Layout layouts[] = {
 
 /* tagging */
 static Tag tags[] = {
-	{ "", &layouts[7] },
-	{ "", &layouts[3] },
-	{ "", &layouts[0] },
-	{ "", &layouts[3] },
-	{ "", &layouts[1] },
-	{ "", &layouts[3] },
-	{ "", &layouts[3] },
-	{ "", &layouts[0] },
-	{ "", &layouts[0] }
+	{ "", &layouts[8], 0.75 },
+	{ "", &layouts[3], 0.55 },
+	{ "", &layouts[0], 0.55 },
+	{ "", &layouts[3], 0.55 },
+	{ "", &layouts[1], 0.65 },
+	{ "", &layouts[3], 0.55 },
+	{ "", &layouts[3], 0.55 },
+	{ "", &layouts[0], 0.55 },
+	{ "", &layouts[0], 0.55 }
 };
 
 static const ScriptButton script_buttons[] = {
@@ -173,3 +173,8 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
 
+#include "layouts/grid.c"
+#include "layouts/tile2.c"
+#include "layouts/fibonacci.c"
+#include "layouts/bstack.c"
+#include "layouts/bstackhoriz.c"

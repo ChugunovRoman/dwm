@@ -1,6 +1,7 @@
-void
+static void
 fibonacci(Monitor *mon, int s) {
 	unsigned int i, n, nx, ny, nw, nh;
+	float tagmfact;
 	Client *c;
 
 	for(n = 0, c = nexttiled(mon->clients); c; c = nexttiled(c->next), n++);
@@ -43,8 +44,16 @@ fibonacci(Monitor *mon, int s) {
 			}
 			if(i == 0)
 			{
-				if(n != 1)
-					nw = mon->ww * mon->mfact;
+				if(n != 1) {
+					for (int j = 0; j < LENGTH(tags); j++)
+						if (((1 << j) & TAGMASK) == mon->tagset[mon->seltags]) {
+							tagmfact = tags[j].mfact;
+							break;
+						}
+					if (!tagmfact)
+						tagmfact = mon->mfact;
+					nw = mon->ww * tagmfact;
+				}
 				ny = mon->wy;
 			}
 			else if(i == 1)
@@ -55,12 +64,12 @@ fibonacci(Monitor *mon, int s) {
 	}
 }
 
-void
+static void
 dwindle(Monitor *mon) {
 	fibonacci(mon, 1);
 }
 
-void
+static void
 spiral(Monitor *mon) {
 	fibonacci(mon, 0);
 }
