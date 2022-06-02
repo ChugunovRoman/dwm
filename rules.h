@@ -41,6 +41,7 @@ static const Rule rules[] = {
 	{ "NoSQLBooster for MongoDB",   			              NULL,       NULL,       				         1 << 5,       borderpx,             0,           0 },
 	{ "Postman",           								              NULL,       NULL,       				         1 << 5,       borderpx,             0,           0 },
 	{ "Insomnia",           							              NULL,       NULL,       				         1 << 5,       borderpx,             0,           0 },
+	{ "Slack",		           							              NULL,       NULL,       				         1 << 5,       borderpx,             0,           0 },
 
 	{ "Mainwindow.py",  									              NULL,       NULL,       				         1 << 6,       borderpx,             0,           -1 },
 	{ "Steam",  											                  NULL,       NULL,       				         1 << 6,       borderpx,             0,           -1 },
