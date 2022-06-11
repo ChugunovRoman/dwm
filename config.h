@@ -104,6 +104,10 @@ static Key keys[] = {
 	{ ALT,						              XK_x, 		 spawn,          {.v = vscodecmd } },
 	{ ALT,						              XK_e, 		 spawn,          {.v = nemocmd } },
 
+	{ MODKEY,                       XK_F5,	   spawn,	         {.v = toggleAudacious } },
+	{ MODKEY,                       XK_F6,	   spawn,	         {.v = nextAudacious } },
+	{ MODKEY,                       XK_F4,	   spawn,	         {.v = rewAudacious } },
+
 	/* system shortcuts */
 	{ MODKEY ,				              XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_x,	   	 spawn,	       	 {.v = xkillcmd } },
