@@ -38,5 +38,5 @@ static const char *rewAudacious[]      = { "audacious", "-r", NULL };
 
 /* commands for buttons */
 static const char *wallpaper[]	  	   = { "wallpaper.sh", NULL };
-static const char *shutdowncmd[]       = { "shutdown", "-h", "+0", NULL };
-static const char *rebootcmd[]	       = { "reboot", NULL };
+static const char *shutdowncmd[]       = { "sudo", "shutdown", "-h", "+0", NULL };
+static const char *rebootcmd[]	       = { "sudo", "reboot", NULL };
