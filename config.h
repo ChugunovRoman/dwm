@@ -102,7 +102,7 @@ static Key keys[] = {
 	{ ALT,						              XK_w, 		 spawn,          {.v = googlechromecmd } },
 	{ ALT,						              XK_a, 		 spawn,          {.v = audaciouscmd } },
 	{ ALT,						              XK_x, 		 spawn,          {.v = vscodecmd } },
-	{ ALT,						              XK_e, 		 spawn,          {.v = nemocmd } },
+	// { ALT,						              XK_e, 		 spawn,          {.v = nemocmd } },
 
 	{ MODKEY,                       XK_F5,	   spawn,	         {.v = toggleAudacious } },
 	{ MODKEY,                       XK_F6,	   spawn,	         {.v = nextAudacious } },
